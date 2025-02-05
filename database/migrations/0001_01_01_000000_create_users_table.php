@@ -13,29 +13,30 @@ return new class extends Migration
     {
         Schema::create('users', function (Blueprint $table) {
             $table->id();
-            $table->string('username');
-            $table->string('name');
-            $table->string('email')->unique();
-            $table->timestamps('email_verified_at')->nullablle();
-            $table->integer('phone');
-            $table->string('password');
-            $table->rememberToken();
-            $table->timestamps();
+                $table->string('username');
+                $table->string('name');
+                $table->string('email')->unique();
+                $table->timestamp('email_verified_at')->nullable();
+                $table->string('phone');
+                $table->string('password');
+                $table->rememberToken();
+                $table->timestamps();
         });
 
         Schema::create('password_reset_tokens', function (Blueprint $table) {
             $table->string('email')->primary();
             $table->string('token');
-            $table->timestamp('created_at')->nullable();
+            $table->timestamp('created_at')->nullablle();
         });
 
         Schema::create('sessions', function (Blueprint $table) {
-            $table->string('id')->primary();
-            $table->foreignId('user_id')->nullable()->index();
-            $table->string('ip_address', 45)->nullable();
-            $table->text('user_agent')->nullable();
-            $table->longText('payload');
-            $table->integer('last_activity')->index();
+            $table->id();
+            $table->string('username')->unique();
+            $table->string('password')->unique();
+            $table->string('name');
+            $table->string('email')->unique(); 
+            $table->integer('phone')->unique();
+            $table->timestamps();
         });
     }
 
